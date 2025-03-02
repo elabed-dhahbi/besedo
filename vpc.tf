@@ -14,6 +14,7 @@ resource "aws_subnet" "public_subnet" {
   tags = {
     Name = "technical-test-public"
   }
+  availability_zone = data.aws_availability_zone.available.names[0]
 }
 
 resource "aws_subnet" "private_subnet" {
@@ -22,6 +23,8 @@ resource "aws_subnet" "private_subnet" {
   tags = {
     Name = "technical-test-private"
   }
+ availability_zone = data.aws_availability_zone.available.names[0]
+
 }
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.technical_test_vpc.id
